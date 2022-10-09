@@ -10,15 +10,15 @@ def main()
 	brackets.each do |element|
 		if is_open_bracket(element) != nil
 			stack_of_elems << element
-		elsif close_bracket(stack_of_elems.last) == element
+		elsif close_bracket(stack_of_elems[-1]) == element
 			stack_of_elems.pop
 		else
 			result = false
 			break
 		end
 	end
-	
-	if result == true
+
+	if stack_of_elems.length == 0 and result == true
 		puts "True"
 	else
 		puts "False"
@@ -32,8 +32,10 @@ def close_bracket(character)
 		return "]"
 	elsif character == "("
 		return ")"
-	else
+	elsif character == "{"
 		return "}"
+	else 
+		return nil
 	end
 end
 
